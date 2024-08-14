@@ -5,6 +5,7 @@ import HeaderComponent from "src/components/common/HeaderComponent";
 import FooterComponent from "src/components/common/FooterComponent";
 import ListEmployeeComponent from "src/components/ListEmployeeComponent";
 import EmployeeComponent from "src/components/EmployeeComponent";
+import ListDepartmentComponent from "src/components/ListDepartmentComponent";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
           <Route path="/add-employee" element={<EmployeeComponent />}></Route>
           {/* // http://localhost:3000/edit-employee/1 */}
           <Route path="/edit-employee/:id" element={<EmployeeComponent />}></Route>
+          {/* // http://localhost:3000/departments */}
+          <Route path='/departments' element = { <ListDepartmentComponent />}></Route>
+
         </Routes>
         <FooterComponent />
       </BrowserRouter>

@@ -31,6 +31,7 @@ const EmployeeComponent = () => {
     const navigator = useNavigate();
 
     useEffect(() => {
+        //update
         if(id){
             getEmployee(id).then((response) => {
                 setFirstName(response.data.firstName);
@@ -73,7 +74,7 @@ const EmployeeComponent = () => {
     function validateForm(){
         let valid = true;
 
-        const errorsCopy = {... errors}
+        const errorsCopy = { ...errors }
 
         if(firstName.trim()){
             errorsCopy.firstName = '';
@@ -179,7 +180,9 @@ const EmployeeComponent = () => {
                                <option value="Select Department">Select Department</option>
                                 {
                                     departments.map( department => 
-                                        <option key={department.id} value={department.id} > {department.departmentName}</option>
+                                        <option key={department.id} value={department.id} > 
+                                            {department.departmentName}
+                                        </option>
                                         )
                                 }
                             </select>
