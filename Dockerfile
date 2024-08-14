@@ -1,11 +1,11 @@
 # base image
-FROM node:20.11.1-alpine3.19 as build
+FROM node:20.11.1-alpine3.19 AS build
 
 # set working directory
 WORKDIR /app
 
 # exposing all our Node.js binaries
-ENV PATH /app/node_modules/.bin:$PATH
+ENV PATH=/app/node_modules/.bin:$PATH
 
 # Copy package.json
 COPY package.json /app/package.json
