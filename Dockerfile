@@ -4,7 +4,7 @@ FROM node:20
 ARG VITE_APIURL
 
 # Set environment variables during the build process
-ENV VITE_API_URL=$VITE_APIURL
+ENV VITE_APIURL=$VITE_APIURL
 
 WORKDIR /app
 
