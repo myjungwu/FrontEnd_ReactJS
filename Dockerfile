@@ -1,12 +1,12 @@
 FROM node:20
 
 # Define build arguments for environment variables
-ARG VITE_APIURL
-ARG VITE_MODE
+# ARG VITE_APIURL
+# ARG VITE_MODE
 
 # Set environment variables during the build process
-ENV VITE_APIURL=$VITE_APIURL
-ENV VITE_MODE=$VITE_MODE
+# ENV VITE_APIURL=$VITE_APIURL
+# ENV VITE_MODE=$VITE_MODE
 
 WORKDIR /app
 
