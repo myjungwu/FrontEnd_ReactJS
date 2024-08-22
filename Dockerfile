@@ -15,8 +15,8 @@ ARG VITE_APIURL
 ARG VITE_MODE
 
 # Set environment variables during the build process
-ENV VITE_APIURL=$VITE_APIURL
-ENV VITE_MODE=$VITE_MODE
+ENV VITE_APIURL=.env.$VITE_APIURL
+ENV VITE_MODE=.env.$VITE_MODE
 
 RUN npm run build
 
