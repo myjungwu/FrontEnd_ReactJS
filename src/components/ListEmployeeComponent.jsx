@@ -16,7 +16,7 @@ const ListEmployeeComponent = () => {
         const REST_API_BASE_URL =  import.meta.env.VITE_API_URL
         console.log(`REST_API_BASE_URL = ${REST_API_BASE_URL}`)
         const mode = import.meta.env.VITE_MODE
-        console.log(`Mode = ${mode}`)
+        console.log(`Current Mode = ${mode}`)
 
         listEmployees()
         .then((response) => {
