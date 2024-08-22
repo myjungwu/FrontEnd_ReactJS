@@ -1,25 +1,42 @@
-FROM node:20
+# base image
+FROM node:20.11.1-alpine3.19 AS build
 
+ARG VITE_APIURL
+
+ENV VITE_APIURL=$VITE_APIURL
+
+# set working directory
 WORKDIR /app
 
-COPY package.json .
+# exposing all our Node.js binaries
+ENV PATH=/app/node_modules/.bin:$PATH
 
+# Copy package.json
+COPY package.json /app/package.json
+
+# npm install
 RUN npm install
 
-RUN npm i -g serve
+# add app
+COPY . /app
 
-COPY . .
-
-# Define build arguments for environment variables
-ARG VITE_APIURL
-ARG VITE_MODE
-
-# Set environment variables during the build process
-ENV VITE_APIURL=.env.$VITE_APIURL
-ENV VITE_MODE=.env.$VITE_MODE
-
+# build app
 RUN npm run build
 
-EXPOSE 3000
+FROM nginx:latest
 
-CMD [ "serve", "-s", "dist" ]
+# Remove default nginx static resources
+RUN rm /etc/nginx/conf.d/default.conf
+
+#copies React to the container directory
+COPY nginx/nginx.conf /etc/nginx/conf.d
+
+# Set working directory to nginx resources directory
+COPY --from=build /app/dist /usr/share/nginx/html
+
+COPY env.sh /docker-entrypoint.d/env.sh
+RUN chmod +x /docker-entrypoint.d/env.sh
+
+EXPOSE 80
+# Containers run nginx with global directives and daemon off
+ENTRYPOINT ["nginx", "-g", "daemon off;"]

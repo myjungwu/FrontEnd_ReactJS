@@ -30,11 +30,9 @@ spec:
     spec:
       containers:
         - name: employee-ui
-          image: bmsvega2k/springbootreactjs:env0.5
+          image: bmsvega2k/springbootreactjs:latest
           ports:
             - containerPort: 3000
           env:
             - name: VITE_APIURL
               value: "http://34.123.248.170:8080/api"
-            - name: VITE_MODE
-              value: "Prod Mode"
