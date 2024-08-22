@@ -1,13 +1,5 @@
 FROM node:20
 
-# Define build arguments for environment variables
-ARG VITE_APIURL
-ARG VITE_MODE
-
-# Set environment variables during the build process
-ENV VITE_APIURL=${VITE_APIURL}
-ENV VITE_MODE=${VITE_MODE}
-
 WORKDIR /app
 
 COPY package.json .
@@ -17,6 +9,14 @@ RUN npm install
 RUN npm i -g serve
 
 COPY . .
+
+# Define build arguments for environment variables
+ARG VITE_APIURL
+ARG VITE_MODE
+
+# Set environment variables during the build process
+ENV VITE_APIURL=$VITE_APIURL
+ENV VITE_MODE=$VITE_MODE
 
 RUN npm run build
 
