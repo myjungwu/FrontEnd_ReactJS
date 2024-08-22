@@ -61,3 +61,15 @@ spec:
                 secretKeyRef:
                   key: mariadb_password
                   name: employee-secrets
+
+# ---
+# apiVersion: v1
+# kind: Endpoints
+# metadata:
+#   name: employee-api-svc
+# subsets:
+#   - addresses:
+#       - ip: 104.198.46.149 # 외부 웹 서버 IP 주소 
+#     ports:
+#       - name: http
+#         port: 8080                  
