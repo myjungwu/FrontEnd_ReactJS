@@ -9,7 +9,7 @@ on:
 
 env:
   DOCKER_IMAGE: springbootreactjs
-  DOCKER_TAG: se0.2
+  DOCKER_TAG: se0.3
 jobs:
   Docker:
     runs-on: ubuntu-latest

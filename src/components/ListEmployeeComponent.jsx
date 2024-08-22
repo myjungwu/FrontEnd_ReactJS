@@ -13,15 +13,20 @@ const ListEmployeeComponent = () => {
     }, [])
 
     function getAllEmployees() {
-        const REST_API_BASE_URL =  import.meta.env.VITE_API_URL
+        const REST_API_BASE_URL =  import.meta.env.VITE_APIURL
         console.log(`REST_API_BASE_URL = ${REST_API_BASE_URL}`)
         const mode = import.meta.env.VITE_MODE
         console.log(`Current Mode = ${mode}`)
 
         listEmployees()
         .then((response) => {
-            setEmployees(response.data);
-            console.log(employees);
+            const isDataAvailable = response.data && response.data.length;
+            if(isDataAvailable){
+                setEmployees(response.data);            
+                console.log(employees);
+            }else {
+                console.log('Employees Empty')
+            }
         }).catch(error => {
             console.error(error);
             console.log('Error', error.message);
