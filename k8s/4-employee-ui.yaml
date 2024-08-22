@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: employee-ui-svc
+spec:
+  type: LoadBalancer
+  # type: NodePort
+  selector:
+    app: employee-ui-pod
+  ports:
+    - name: app-port-mapping
+      protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-ui-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: employee-ui-pod
+  template:
+    metadata:
+      labels:
+        app: employee-ui-pod
+    spec:
+      containers:
+        - name: employee-ui
+          image: myuser/springbootreactjs:client0.5
+          ports:
+            - containerPort: 80
+          env:
+            - name: VITE_APIURL
+              value: http://employee-api-svc:8080

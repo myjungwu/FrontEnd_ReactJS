@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: employee-config
+data:
+  mariadb_host: mariadb-svc
+  mariadb_dbname: boot_db
+  mariadb_port: "3306"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: employee-secrets
+type: Opaque
+data:
+  mariadb_username: Ym9vdA==
+  mariadb_password: Ym9vdA==
+  mariadb_root_password: bWFyaWE=

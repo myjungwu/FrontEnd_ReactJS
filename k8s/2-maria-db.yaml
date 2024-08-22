@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb-deployment
+spec:
+  selector:
+    matchLabels:
+      app: mariadb-pod
+      tier: database
+  template:
+    metadata:
+      labels:
+        app: mariadb-pod
+        tier: database
+    spec:
+      containers:
+        - image: mariadb:10.11.8 # image from docker-hub
+          name: mariadb
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom :
+               secretKeyRef :
+                 name : employee-secrets
+                 key :  mariadb_root_password
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: employee-secrets
+                  key: mariadb_username
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: employee-secrets
+                  key: mariadb_password
+            - name: MYSQL_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: employee-config
+                  key: mariadb_dbname
+            - name: MYSQL_DATA_PATH
+              value: /var/lib/mysql
+            - name: MYSQL_ROOT_HOST
+              value: '%'
+          ports:
+            - containerPort: 3306
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb-svc
+  labels:
+    app: mariadb
+spec:
+  type: ClusterIP
+  selector:
+    app: mariadb-pod
+  ports:
+    - port: 3306
+      targetPort: 3306

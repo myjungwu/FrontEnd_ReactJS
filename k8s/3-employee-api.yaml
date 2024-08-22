@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: employee-api-svc
+spec:
+  type: LoadBalancer
+  # type: NodePort
+  selector:
+    app: employee-api-pod
+  ports:
+    - name: app-port-mapping
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 30090
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: employee-api-pod
+  template:
+    metadata:
+      labels:
+        app: employee-api-pod
+    spec:
+      containers:
+        - name: employee-api
+          image: bmsvega2k/springbootreactjs:0.4
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: prod
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: mariadb_host
+                  name: employee-config
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: mariadb_port
+                  name: employee-config
+            - name: DB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  key: mariadb_dbname
+                  name: employee-config
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: mariadb_username
+                  name: employee-secrets
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: mariadb_password
+                  name: employee-secrets
