@@ -62,7 +62,7 @@ const ListEmployeeComponent = () => {
                 </tr>
             </thead>
             <tbody>
-                {
+                {   employees?
                     employees.map(employee => 
                         <tr key={employee.id}>
                             <td>{employee.id}</td>
@@ -77,6 +77,7 @@ const ListEmployeeComponent = () => {
                                 >Delete</button>
                             </td>
                         </tr>)
+                    :(<tr><td>Employees Empty</td></tr>)    
                 }
             </tbody>
         </table>
