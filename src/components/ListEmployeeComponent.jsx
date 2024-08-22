@@ -24,6 +24,7 @@ const ListEmployeeComponent = () => {
             console.log(employees);
         }).catch(error => {
             console.error(error);
+            console.log('Error', error.message);
         })
     }
     function addNewEmployee(){

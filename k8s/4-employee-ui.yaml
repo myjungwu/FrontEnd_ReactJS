@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
         - name: employee-ui
-          image: bmsvega2k/springbootreactjs:client0.4
+          image: bmsvega2k/springbootreactjs:client0.1
           ports:
             - containerPort: 80
           env:
