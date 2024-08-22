@@ -13,9 +13,15 @@ const ListEmployeeComponent = () => {
     }, [])
 
     function getAllEmployees() {
+        const REST_API_BASE_URL =  import.meta.env.VITE_API_URL
+        console.log(`REST_API_BASE_URL = ${REST_API_BASE_URL}`)
+        const mode = import.meta.env.VITE_MODE
+        console.log(`Mode = ${mode}`)
+
         listEmployees()
         .then((response) => {
             setEmployees(response.data);
+            console.log(employees);
         }).catch(error => {
             console.error(error);
         })
