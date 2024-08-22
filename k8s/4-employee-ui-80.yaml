@@ -10,8 +10,8 @@ spec:
   ports:
     - name: app-port-mapping
       protocol: TCP
-      port: 3000
-      targetPort: 3000
+      port: 80
+      targetPort: 80
       nodePort: 30080
 ---
 apiVersion: apps/v1
@@ -30,11 +30,11 @@ spec:
     spec:
       containers:
         - name: employee-ui
-          image: bmsvega2k/springbootreactjs:se0.1
+          image: bmsvega2k/springbootreactjs:ui0.2
           ports:
-            - containerPort: 3000
-          env:
-            - name: VITE_API_URL
-              value: http://employee-api-svc:8080/api
-            - name: VITE_MODE
-              value: "Production Mode"
+            - containerPort: 80
+          # env:
+          #   - name: VITE_API_URL
+          #     value: http://employee-api-svc:8080/api
+          #   - name: VITE_MODE
+          #     value: "Production Mode"
