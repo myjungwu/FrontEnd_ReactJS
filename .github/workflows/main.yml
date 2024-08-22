@@ -37,5 +37,5 @@ jobs:
         run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/$DOCKER_IMAGE:$DOCKER_TAG
 
       - name: Push to Docker Hub
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/$DOCKER_IMAGE
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/$DOCKER_IMAGE:lastest
         # run: docker push ${{ secrets.DOCKER_USERNAME }}/$DOCKER_IMAGE:$DOCKER_TAG
