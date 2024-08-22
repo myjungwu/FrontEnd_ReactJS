@@ -1,9 +1,9 @@
 # base image
 FROM node:20.11.1-alpine3.19 AS build
 
-ARG VITE_APIURL
+ARG VITE_API_URL
 
-ENV VITE_APIURL=$VITE_APIURL
+ENV VITE_API_URL=$VITE_API_URL
 
 # set working directory
 WORKDIR /app

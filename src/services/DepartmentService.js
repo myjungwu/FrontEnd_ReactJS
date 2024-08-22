@@ -1,9 +1,11 @@
 import axios from "axios";
 
-const REST_API_BASE_URL =  import.meta.env.VITE_APIURL
+const REST_API_BASE_URL =  import.meta.env.VITE_API_URL
+console.log(`REST_API_BASE_URL = ${REST_API_BASE_URL}`)
 //'http://localhost:8080/api'
 
 const DEPARTMENT_REST_API_URL = `${REST_API_BASE_URL}/departments`
+console.log(`DEPARTMENT_REST_API_URL = ${DEPARTMENT_REST_API_URL}`)
 //'http://localhost:8080/api/departments'
 
 export const getAllDepartments = () => axios.get(DEPARTMENT_REST_API_URL);
