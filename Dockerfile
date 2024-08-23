@@ -19,7 +19,7 @@ COPY . /app
 # build arguments for env variables
 ARG VITE_APIURL
 # set environment variables for vite build
-ENV VITE_APIURL=${VITE_APIURL}
+ENV VITE_APIURL ${VITE_APIURL}
 
 # build app
 RUN npm run build
@@ -37,8 +37,8 @@ COPY --from=build /app/dist /usr/share/nginx/html
 
 EXPOSE 80
 
-# set runtime environment vairables
-ENV VITE_APIURL=${VITE_APIURL}
+# # set runtime environment vairables
+# ENV VITE_APIURL=${VITE_APIURL}
 
 # Containers run nginx with global directives and daemon off
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

@@ -6,6 +6,8 @@ const ListEmployeeComponent = () => {
 
     const [employees, setEmployees] = useState([])
 
+    const [available, setAvailable] = useState(false)    
+    
     const navigator = useNavigate();
 
     useEffect(() => {
@@ -22,6 +24,7 @@ const ListEmployeeComponent = () => {
         .then((response) => {
             const isDataAvailable = response.data && response.data.length;
             if(isDataAvailable){
+                setAvailable(isDataAvailable)
                 setEmployees(response.data);            
                 console.log(employees);
             }else {
@@ -67,7 +70,7 @@ const ListEmployeeComponent = () => {
                 </tr>
             </thead>
             <tbody>
-                {   employees?
+                {   available?
                     employees.map(employee => 
                         <tr key={employee.id}>
                             <td>{employee.id}</td>
