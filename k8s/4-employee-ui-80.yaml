@@ -30,10 +30,9 @@ spec:
     spec:
       containers:
         - name: employee-ui
-          image: bmsvega2k/springbootreactjs:env0.1
+          image: bmsvega2k/springbootreactjs:envsh0.1
           ports:
             - containerPort: 80
           env:
-            - name: MY_APP_VITE_APIURL
-            # - name: VITE_APIURL
+            - name: VITE_APIURL
               value: "http://34.41.14.100:8080/api"
