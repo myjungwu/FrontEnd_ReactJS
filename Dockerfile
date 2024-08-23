@@ -34,9 +34,6 @@ COPY nginx/nginx.conf /etc/nginx/conf.d
 # Set working directory to nginx resources directory
 COPY --from=build /app/dist /usr/share/nginx/html
 
-COPY env.sh /docker-entrypoint.d/env.sh
-RUN chmod +x /docker-entrypoint.d/env.sh
-
 EXPOSE 80
 # Containers run nginx with global directives and daemon off
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
