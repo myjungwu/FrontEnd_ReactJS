@@ -19,8 +19,6 @@ COPY . /app
 
 ARG VITE_APIURL
 
-RUN echo ${VITE_APIURL}
-
 ENV VITE_APIURL=$VITE_APIURL
 
 # build app
