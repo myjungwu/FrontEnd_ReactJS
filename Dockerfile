@@ -21,8 +21,6 @@ ARG VITE_APIURL
 
 ENV VITE_APIURL=$VITE_APIURL
 
-RUN echo $VITE_APIURL
-
 # build app
 RUN npm run build
 
