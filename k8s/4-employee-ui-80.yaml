@@ -34,5 +34,5 @@ spec:
           ports:
             - containerPort: 80
           env:
-            - name: MY_APP_APIURL
+            - name: VITE_APIURL
               value: "http://34.41.14.100:8080/api"
