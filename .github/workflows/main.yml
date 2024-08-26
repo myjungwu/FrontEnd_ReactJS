@@ -6,20 +6,27 @@ on:
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
-env:
-  DOCKER_IMAGE: ${{ reactjs.DOCKER_IMAGE }}
-  DOCKER_TAG: ${{ reactjs.DOCKER_TAG }}
-  VITE_APIURL: ${{ reactjs.VITE_APIURL }}
+# env:
+#   DOCKER_IMAGE: ${{ reactjs.DOCKER_IMAGE }}
+#   DOCKER_TAG: ${{ reactjs.DOCKER_TAG }}
+#   VITE_APIURL: ${{ reactjs.VITE_APIURL }}
 
 jobs:
   Docker:
     runs-on: ubuntu-latest  
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3      
       - uses: actions/setup-node@v3
         with:
           node-version: 20
 
+      - name: Set DOCKER_IMAGE
+        run: echo "DOCKER_IMAGE=${{ github.event.inputs.DOCKER_IMAGE }}" >> $GITHUB_ENV
+      - name: Set DOCKER_TAG
+        run: echo "DOCKER_TAG=${{ github.event.inputs.DOCKER_TAG }}" >> $GITHUB_ENV
+      - name: Set VITE_APIURL
+        run: echo "VITE_APIURL=${{ github.event.inputs.VITE_APIURL }}" >> $GITHUB_ENV
+        
       - name: setup git config
         run: |
           git config user.name "GitHub Actions Bot"
