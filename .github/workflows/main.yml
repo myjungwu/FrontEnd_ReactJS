@@ -8,8 +8,8 @@ on:
   workflow_dispatch:
 env:
   DOCKER_IMAGE: springbootreactjs
-  DOCKER_TAG: t0.5
-  VITE_APIURL: http://employee-api-svc:8080/api
+  DOCKER_TAG: t0.6
+  VITE_APIURL: ${{ secrets.VITE_APIURL }}
 
 jobs:
   Docker:
