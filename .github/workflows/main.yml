@@ -7,9 +7,9 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 env:
-  DOCKER_IMAGE: ${{DOCKER_IMAGE}}
-  DOCKER_TAG: ${{DOCKER_TAG}}
-  VITE_APIURL: ${{VITE_APIURL}}
+  DOCKER_IMAGE: ${{ reactjs.DOCKER_IMAGE }}
+  DOCKER_TAG: ${{ reactjs.DOCKER_TAG }}
+  VITE_APIURL: ${{ reactjs.VITE_APIURL }}
 
 jobs:
   Docker:
