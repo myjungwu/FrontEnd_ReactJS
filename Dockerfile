@@ -17,9 +17,9 @@ RUN npm install
 # add app
 COPY . /app
 # build arguments for env variables
-# ARG VITE_APIURL
+ARG VITE_APIURL
 # set environment variables for vite build
-# ENV VITE_APIURL=$VITE_APIURL
+ENV VITE_APIURL=${VITE_APIURL}
 
 # build app
 RUN npm run build
