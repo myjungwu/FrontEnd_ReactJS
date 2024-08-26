@@ -6,14 +6,13 @@ on:
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
+env:
+  DOCKER_IMAGE: ${{github.DOCKER_IMAGE}}
+  DOCKER_TAG: ${{github.DOCKER_TAG}}
+  VITE_APIURL: ${{github.VITE_APIURL}}
 
 jobs:
-  # Docker:
-  build:
-    env:
-      DOCKER_IMAGE: ${{env.DOCKER_IMAGE}}
-      DOCKER_TAG: ${{env.DOCKER_TAG}}
-      VITE_APIURL: ${{env.VITE_APIURL}}
+  Docker:
     runs-on: ubuntu-latest  
     steps:
       - uses: actions/checkout@v3
