@@ -6,10 +6,10 @@ on:
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
-env:
-  DOCKER_IMAGE: ${{github.DOCKER_IMAGE}}
-  DOCKER_TAG: ${{github.DOCKER_TAG}}
-  VITE_APIURL: ${{github.VITE_APIURL}}
+# env:
+#   DOCKER_IMAGE: ${{github.DOCKER_IMAGE}}
+#   DOCKER_TAG: ${{github.DOCKER_TAG}}
+#   VITE_APIURL: ${{github.VITE_APIURL}}
 
 jobs:
   Docker:
@@ -35,7 +35,7 @@ jobs:
         run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
       - name: Build Docker image
-        run: docker build . --build-arg VITE_APIURL=$VITE_APIURL --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/$DOCKER_IMAGE:$DOCKER_TAG
+        run: docker build . --build-arg VITE_APIURL=${{VITE_APIURL}} --file Dockerfile --tag ${{ secrets.DOCKER_USERNAME }}/${{DOCKER_IMAGE}}:${{DOCKER_TAG}}
 
       - name: Push to Docker Hub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/$DOCKER_IMAGE:$DOCKER_TAG
