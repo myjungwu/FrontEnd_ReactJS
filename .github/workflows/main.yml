@@ -8,9 +8,9 @@ on:
   workflow_dispatch:
 
 env:
-  DOCKER_IMAGE: ${{vars.DOCKER_IMAGE}}
-  DOCKER_TAG: ${{vars.DOCKER_TAG}}
-  VITE_APIURL: ${{vars.VITE_APIURL}}
+  DOCKER_IMAGE: ${{env.DOCKER_IMAGE}}
+  DOCKER_TAG: ${{env.DOCKER_TAG}}
+  VITE_APIURL: ${{env.VITE_APIURL}}
 jobs:
   Docker:
     runs-on: ubuntu-latest
