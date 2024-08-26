@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 env:
   DOCKER_IMAGE: springbootreactjs
-  DOCKER_TAG: t0.3
+  DOCKER_TAG: t0.4
   VITE_APIURL: ${{ secrets.VITE_APIURL }}
 
 jobs:
